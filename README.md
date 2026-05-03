@@ -4,5 +4,6 @@
 
 - [Learning materials](learning-materials/)
 - [Season plan](season-plan.md)
+- [Sponsorships](sponsorships.md)
 
 
