@@ -1,22 +1,26 @@
 # 2026 - 2027 Season
 **A year is a surprisingly short time**
-**Test before committing**
-**
+**Test before committing & make testing easy**
 
 # Priorities
+- Sponsors
+    - Connectors / harnesses
+    - PCB manufacturing
+- Migration to KiCad & GitHub
+    - Centralized library for shared components
+
 ## High Voltage
 
+
 ## Low Voltage
-- Centralized Kicad Libraries
+
 - Shift to STM32
-- Find PCB and Wire Harness / connector sponsors
 
 - CTU
     - STM MCU
-    - Mostly 
-    - 
+    - SMD core
     - Connector(s)
-        - Power (2), CANs (4), 
+        - Power (2), CANs (4), extra (4)
     - Buttons
     - Enclosure
 
@@ -33,6 +37,9 @@
     - 2nd power input path or power over usb
     - On board CAN connector
     - LEDs actually this time 
+
+Dashboard
+- 
 
 CAN Watchdogs
     - Source & Buy
