@@ -1,0 +1,1 @@
+link to google sheets for managing contacts and statuses
