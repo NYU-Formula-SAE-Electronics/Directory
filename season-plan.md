@@ -71,5 +71,5 @@
     - Connectors
         - Power, button signals (2+8)
     - Quick Release mechanism
-        - Lemo connector?
+        - Ideally, Lemo or Pegasus connector, but we can find cheaper
     - Body CAD (talk to Mina Shafik)    
