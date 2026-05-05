@@ -75,6 +75,7 @@
     - Extra Signals (4)
 - LEDs actually this time
 - Louder RTDS
+- Sensor filter circuit development, see [PCU Gen 2](./pcu-gen-2.md)
 - New Enclosure
     - Transparent lid
 

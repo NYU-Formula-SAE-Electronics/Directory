@@ -1,10 +1,11 @@
 # PCU Gen 2
 
-## 1. Summer Pedal Sensors Mini Project
+## 1. Filter R&D
 
 Take home a pedal sensor + current PCU.
+The PCU is currently powered through the 12V line. If you don't have a 12V DC Supply available, the data collection needs to be done at Makergarage. Another option is to remove the 12V to 5V DC Converter from the PCU board and solder the VUSB pad on the underside of the Teensy module to power the whole circuit through Micro USB.
 
-### Tasks
+### Steps
 
 1. Write a program that reads both channels of the pedal sensor at >=100 Hz and logs data to the SD card.
     - See [https://github.com/NYU-Formula-SAE-Electronics/pcu-firmware](PCU Firmware Repo) for reference on reading raw data from the sensors.
@@ -16,8 +17,6 @@ Take home a pedal sensor + current PCU.
 4. Based on results, determine which filter circuit will be used for Gen 2.
 
 ## 2. Design
-
-
 
 ### Wheel Speed Sensor Candidates
 
