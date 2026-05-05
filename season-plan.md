@@ -8,7 +8,7 @@
     - Connectors / harnesses
     - PCB manufacturing
 - Migration to KiCad & GitHub (LV)
-    - Centralized library for shared components
+    - Centralized library for shared components & Designs
 - Finish Accumulator
 - Improved HV Boards
 - New LV Architecture
@@ -19,15 +19,23 @@
 
 ### Gen 2 System Architecture
 
-![LV Architecture Diagram](LV_Architecture_Diagram.png)
+<img src="LV_Architecture_Diagram.png" alt="LV Architecture Diagram" width="700" />
 
 #### CAN Buses
-- **CAN 1:** PCU -> Cascadia -> BMS -> IMD
-- **CAN 2:** PCU -> Dash -> CTU
+- **CAN 1:** PCU — Cascadia — BMS — IMD
+- **CAN 2:** PCU — Dash — CTU
 
 ### Improved practices
 - Test points
 - 2nd power input path or power over USB on every board
+- Central Library Structure
+    - FSAE
+        - Libraries
+        - CTU-PCB
+        - PCU-PCB
+        - STM-PCB
+        - Dash-PCB
+        - Steering-PCB
 
 ### Project 1: STM32 Core Board
 - [STM32G474RET6](https://jlcpcb.com/partdetail/STMicroelectronics-STM32G474RET6/C521608)
@@ -66,6 +74,7 @@
     - CANs (4), Brake Pressure Sensors (4)
     - Extra Signals (4)
 - LEDs actually this time
+- Louder RTDS
 - New Enclosure
     - Transparent lid
 
@@ -102,3 +111,33 @@
 - Rules say: "If CAN communication are used for safety functions, a relay controlled by an independent CAN watchdog device that opens if relevant CAN messages are not received. This relay is not required to be latching."
 - STM Core
 - Watchdog IC
+
+## Timeline
+### May:
+- Connector companies (sponsor/sample) → move all board designs from dead point
+- Contact New Haven Display company
+- Confirm allocated space on dashboard and roll hoop
+### June:
+- STM Core board → first board to make once connectors thing resolved
+    - PCBWay Sponsorship
+- PCU 
+    - filter circuit decision for Gen 2 (can be done without connectors or STM Core)
+    - Gen 2 design → after connector + filter circuit decisions
+- CTU board design
+    - Breadboard testing
+    - SMD component sourcing can be done before STM Core
+- Dash & Steering wheel Boards
+### July:
+- Design reviews by Ufuk and Andres
+- STM Core & Dev board first to prod (Early July)
+- PCU, CTU, Dash ready for prod after Core design locked in (Late July)
+### August:
+- Wiring 
+    - CAD (collaborate with Mechs), Export lengths
+    - Lengths & Gauges table
+- Enclosure CADs
+### Fall Semester:
+- Manufacturing
+- Testing
+- Firmware
+
