@@ -1,30 +1,40 @@
 # 2026 - 2027 Season
-**A year is a surprisingly short time**
-**Test before committing & make testing easy**
+**1. One year is a surprisingly short time**
+**2. Test before committing & make testing easy**
+**3. KISS: Keep it simple, Stupid**
 
 ## Priorities
 - Sponsors
     - Connectors / harnesses
     - PCB manufacturing
-- Migration to KiCad & GitHub
+- Migration to KiCad & GitHub (LV)
     - Centralized library for shared components
+- Finish Accumulator
+- Improved HV Boards
+- New LV Architecture
 
 ## High Voltage
 
 ## Low Voltage
 
+### Gen 2 System Architecture
+
+![LV Architecture Diagram](LV_Architecture_Diagram.png)
+
+#### CAN Buses
+- **CAN 1:** PCU -> Cascadia -> BMS -> IMD
+- **CAN 2:** PCU -> Dash -> CTU
+
 ### Improved practices
 - Test points
 - 2nd power input path or power over USB on every board
 
-### STM32 Core Board
-- STM32G474RET6
-    - Common in Motorsports
-    - Widely available: [JLC Parts](https://jlcpcb.com/partdetail/STMicroelectronics-STM32G474RET6/C521608)
+### Project 1: STM32 Core Board
+- [STM32G474RET6](https://jlcpcb.com/partdetail/STMicroelectronics-STM32G474RET6/C521608)
     - 512kB Flash, 128kB RAM, all peripherals we could possibly need
 - CAN Transceivers
     - Protection
-    - Termination jumper
+    - Termination jumper / switch
 - Oscillator
 - 3V3 (and 5V) Power + Protection
 - SWD header
@@ -34,10 +44,10 @@
 - USB-C (+alt power path)
 - Board-to-Board connectors
 
-### Development / Testing Board
+### Project 2: Development / Testing Board
 - All the peripherals we have in screw or header terminals
 
-### CTU: Same architecture, better packaging
+### Project 3: Central Telemetry Unit
 - Add headers and test modules on breadboard
 - PCB
     - STM Core
@@ -46,7 +56,7 @@
         - Power (2), CANs (4), extra (4) = 10 pin
 - Enclosure
 
-### PCU Gen 2
+### Project 4: PCU Gen 2
 - STM Core
 - Split connector
     - Brake (6 pin)
@@ -59,19 +69,13 @@
 - New Enclosure
     - Transparent lid
 
-### CAN Watchdog
-- STM Core
-- Watchdog IC
-- Connected to Shutdown Circuit via Relay
-    - "If CAN communication are used for safety functions, a relay controlled by an independent CAN watchdog device that opens if relevant CAN messages are not received. This relay is not required to be latching."
-
-### Dash
+### Project 5: Dash
 - STM Core
 - Display
     - https://newhavendisplay.com/7-0-inch-ips-eve-tft-lcd-module-without-touchscreen/
     - Get them to sponsor with sample(s)
 - Connectors
-    - Display (20 pin latching header)
+    - Display (20 pin latching box header)
     - Power (2)
     - CANs (4)
     - Steering Wheel Board (10)
@@ -81,16 +85,20 @@
     - Talk to Mina Shafik and Ray about placement, mounting, allocated space
     - Add LV system control switches, etc. to enclosure front plate
 
-### Steering Wheel (Dash peripheral, no MCU)
+### Project 5.1: Steering Wheel (Dash peripheral, no MCU)
 - Radio Button?
 - Display navigation buttons
 - Regen dial
 - Power dial
 - Connectors
-    - Power, button signals (2+8)
+    - Power, button signals (2+8?)
 - Quick Release mechanism
     - Ideally, Lemo or Pegasus connector, but we can find cheaper
     - Ask for samples or sponsorship
 - Body CAD (talk to Mina Shafik)
 
-mdf format
+### (Project 6: CAN Watchdog)
+- Confirm with judges whether needed
+- Rules say: "If CAN communication are used for safety functions, a relay controlled by an independent CAN watchdog device that opens if relevant CAN messages are not received. This relay is not required to be latching."
+- STM Core
+- Watchdog IC
