@@ -51,7 +51,8 @@
 - Split connector
     - Brake (6 pin)
     - Accelerator (6 pin)
-    - Power (2), Regen (2), RTDS (2), RTDB (2)
+    - Wheel Speed Sensors (3x4 or maybe 2x6)
+    - Power (2), Regen (2), RTDS (2), RTDB (2) = 8
     - CANs (4), Brake Pressure Sensors (4)
     - Extra Signals (4)
 - LEDs actually this time
@@ -91,3 +92,5 @@
     - Ideally, Lemo or Pegasus connector, but we can find cheaper
     - Ask for samples or sponsorship
 - Body CAD (talk to Mina Shafik)
+
+mdf format
