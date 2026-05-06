@@ -4,14 +4,19 @@
 **3. KISS: Keep it simple, Stupid**
 
 ## Priorities
-- Sponsors
-    - Connectors / harnesses
-    - PCB manufacturing
+### Technical
 - Migration to KiCad & GitHub (LV)
     - Centralized library for shared components & Designs
 - Finish Accumulator
 - Improved HV Boards
 - New LV Architecture
+### Other
+- Early Submits for ESFs etc. [Deadlines](https://www.formula-hybrid.org/deadlines)
+- Pre-Event Eletrical Review [Only info found](https://www.formula-hybrid.org/volunteer)
+- Sponsors
+    - Connectors / harnesses
+    - PCB manufacturing
+
 
 ## High Voltage
 
@@ -30,7 +35,7 @@
 - 2nd power input path or power over USB on every board
 - Central Library Structure
     - FSAE
-        - Libraries
+        - [fsae-kicad-lib](https://github.com/NYU-Formula-SAE-Electronics/fsae-kicad-lib)
         - CTU-PCB
         - PCU-PCB
         - STM-PCB
@@ -51,6 +56,9 @@
 - Reset and bootmode control
 - USB-C (+alt power path)
 - Board-to-Board connectors
+    - [Plug - Underside of this board](https://jlcpcb.com/partdetail/HRS_Hirose-DF9_25P_1V_32/C2692087)
+    - [Socket - Topside of carrier boards](https://jlcpcb.com/partdetail/HRS_Hirose-DF9_25S_1V_32/C3649128)
+- Footprint to use in next boards
 
 ### Project 2: Development / Testing Board
 - All the peripherals we have in screw or header terminals
