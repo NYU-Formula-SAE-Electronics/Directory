@@ -59,6 +59,7 @@
     - [Plug - Underside of this board](https://jlcpcb.com/partdetail/HRS_Hirose-DF9_25P_1V_32/C2692087)
     - [Socket - Topside of carrier boards](https://jlcpcb.com/partdetail/HRS_Hirose-DF9_25S_1V_32/C3649128)
 - Footprint to use in next boards
+- Standoffs
 
 ### Project 2: Development / Testing Board
 - All the peripherals we have in screw or header terminals
@@ -67,9 +68,15 @@
 - Add headers and test modules on breadboard
 - PCB
     - STM Core
-    - SMD modules (same modules as in current design)
+    - SMD modules (same modules/ICs as in current design)
+        - Except for GPS since no modules with IPEX connector easily available
+            - Use this one we bought: [Adafruit Ultimate GPS Breakout](https://www.adafruit.com/product/5440)
+            - [Reference Image for making footprint](https://github.com/NYU-Formula-SAE-Electronics/CTU-PCB/blob/main/Ref%20Images/gps-module.png)
+        - Lora: [RAK3172-9-SM-I](https://jlcpcb.com/partdetail/RAKwireless-RAK3172_9_SMI/C19723905)
+        - IMU: [BMI088](https://jlcpcb.com/partdetail/BoschSensortec-BMI088/C194919)
     - Connector
-        - Power (2), CANs (4), extra (4) = 10 pin
+        - Power (2), CAN (2) = 4 pin
+        - Connectors for suspension travel sensors (4x3 pins) and Steering angle (6 pins)
 - Enclosure
 
 ### Project 4: PCU Gen 2
@@ -108,6 +115,8 @@
 - Display navigation buttons
 - Regen dial
 - Power dial
+- Find Waterproof Buttons
+    - [One option with multiple colors](https://www.tinysineaudio.com/products/waterproof-momentary-push-button-panel-mount-12mm?variant=51156643414326)
 - Connectors
     - Power, button signals (2+8?)
 - Quick Release mechanism
