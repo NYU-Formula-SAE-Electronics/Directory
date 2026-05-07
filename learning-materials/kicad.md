@@ -10,6 +10,13 @@
 
 ### Helpful Tips and Practices for PCB Design Overall
 - [10 Tips for PCB Design](https://www.youtube.com/watch?v=kkc8BxL5Eo0)
+- [PCB Design Mistakes](https://www.youtube.com/watch?v=D0X76Kbf8fQ)
 - [Aesthetic PCB Design Tips (In Altium, but applies to KiCad as well)](https://www.youtube.com/watch?v=D2UaRPkRExw)
     - More important than you might think, no board will go on the car unless it also looks good.
 
+### KiCad Hotkeys
+- Makes working in the software faster
+- [Link to a pdf](https://www.siue.edu/~gengel/ece326WebStuff/KiCAD-hotkeys.pdf)
+
+## Our Team Practices
+- [Kicad Practices](../kicad-practices.md)

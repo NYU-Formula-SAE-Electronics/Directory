@@ -7,16 +7,16 @@
 ### Technical
 - Migration to KiCad & GitHub (LV)
     - Centralized library for shared components & Designs
+- New LV Architecture
+- Wiring CAD
 - Finish Accumulator
 - Improved HV Boards
-- New LV Architecture
 ### Other
 - Early Submits for ESFs etc. [Deadlines](https://www.formula-hybrid.org/deadlines)
 - Pre-Event Eletrical Review [Only info found](https://www.formula-hybrid.org/volunteer)
 - Sponsors
     - Connectors / harnesses
     - PCB manufacturing
-
 
 ## High Voltage
 
@@ -34,13 +34,24 @@
 - Test points
 - 2nd power input path or power over USB on every board
 - Central Library Structure
-    - FSAE
-        - [fsae-kicad-lib](https://github.com/NYU-Formula-SAE-Electronics/fsae-kicad-lib)
-        - CTU-PCB
-        - PCU-PCB
-        - STM-PCB
-        - Dash-PCB
-        - Steering-PCB
+```
+FSAE/
+├── fsae-kicad-lib/
+├── CTU-PCB/
+├── PCU-PCB/
+├── STM-PCB/
+├── Dash-PCB/
+└── Steering-PCB/
+```
+
+- Firmware updates over CAN (no enclosure opening)
+    - Single CAN diag connector on Dash → flashes and sniffs PCU, Dash, CTU from one plug
+    - Custom application bootloader on every STM board
+        - `BL_ENTER` CAN msg → writes magic value to RTC backup register → `NVIC_SystemReset()` → bootloader sees magic, stays in update mode until flash success or `BL_EXIT` CAN msg.
+        - Backup: on every reset, bootloader listens on CAN for ~300 ms; if `BL_ENTER` heard, stays in update mode. Covers bricked / hung apps via LV master cycle
+        - Per-board CAN node ID in shared header (e.g. `0x10 PCU, 0x11 CTU, 0x12 DASH`)
+    - First-flash + recovery: USB and SWD
+    - [OpenBLT](https://www.feaser.com/openblt/) as starting point, custom Python flasher with `python-can`
 
 ### Project 1: STM32 Core Board
 - [STM32G474RET6](https://jlcpcb.com/partdetail/STMicroelectronics-STM32G474RET6/C521608)
@@ -50,10 +61,10 @@
     - Termination jumper / switch
 - Oscillator
 - 3V3 (and 5V) Power + Protection
-- SWD header
+- SWD header (Tag-Connect TC2030 footprint — pads only, for first-flash + bricked-bootloader recovery without opening enclosures)
 - SD-Adapter
 - Status LEDs
-- Reset and bootmode control
+- Reset and bootmode control (NRST button, BOOT0 pulldown + recovery button — only used until app bootloader is on the chip)
 - USB-C (+alt power path)
 - Board-to-Board connectors
     - [Plug - Underside of this board](https://jlcpcb.com/partdetail/HRS_Hirose-DF9_25P_1V_32/C2692087)
@@ -76,7 +87,7 @@
         - IMU: [BMI088](https://jlcpcb.com/partdetail/BoschSensortec-BMI088/C194919)
     - Connector
         - Power (2), CAN (2) = 4 pin
-        - Connectors for suspension travel sensors (4x3 pins) and Steering angle (6 pins)
+        - Connectors for suspension travel sensors (4x3 pins) and Steering angle (6 pins) (probably won't have the sensors in the car until 27-28 season unless there's extra time and money)
 - Enclosure
 
 ### Project 4: PCU Gen 2
@@ -84,15 +95,15 @@
 - Split connector
     - Brake (6 pin)
     - Accelerator (6 pin)
-    - Wheel Speed Sensors (3x4 or maybe 2x6)
+    - Wheel Speed Sensors (4x3 or maybe 2x6)
     - Power (2), Regen (2), RTDS (2), RTDB (2) = 8
     - CANs (4), Brake Pressure Sensors (4)
     - Extra Signals (4)
 - LEDs actually this time
 - Louder RTDS
+- Find Brake pressure sensor
 - Sensor filter circuit development, see [PCU Gen 2](./pcu-gen-2.md)
-- New Enclosure
-    - Transparent lid
+- Enclosure
 
 ### Project 5: Dash
 - STM Core
@@ -102,8 +113,9 @@
 - Connectors
     - Display (20 pin latching box header)
     - Power (2)
-    - CANs (4)
+    - CAN (2 in, 2 out?)
     - Steering Wheel Board (10)
+    - CAN diag port (CAN2: CAN_H, CAN_L, GND, +12V) — panel mount on enclosure for in-place firmware flashing of PCU / Dash / CTU. 
 - On-board buttons
 - Radio connector? leave full implementation to next year
 - CAD
