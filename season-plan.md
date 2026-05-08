@@ -55,17 +55,22 @@ FSAE/
 
 ### Project 1: STM32 Core Board
 - [STM32G474RET6](https://jlcpcb.com/partdetail/STMicroelectronics-STM32G474RET6/C521608)
-    - 512kB Flash, 128kB RAM, all peripherals we could possibly need
+    - 170MHz, 512KB flash, 128kB RAM, ARM Cortex-M4F, all peripherals we could possibly need
 - CAN Transceivers
     - Protection
     - Termination jumper / switch
 - Oscillator
 - 3V3 (and 5V) Power + Protection
+    - 12V to 5V Conversion and 5V to 3V3 conversion
+        - 2 x [LMR33630](https://jlcpcb.com/partdetail/TexasInstruments-LMR33630AQRNXRQ1/C1850374)
+            - just needs different passive components for different output voltages: [Datasheet](https://www.ti.com/lit/ds/symlink/lmr33630-q1.pdf?ts=1778219527300&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FLMR33630-Q1%252Fpart-details%252FLMR33630AQRNXRQ1)
 - SWD header (Tag-Connect TC2030 footprint — pads only, for first-flash + bricked-bootloader recovery without opening enclosures)
 - SD-Adapter
 - Status LEDs
 - Reset and bootmode control (NRST button, BOOT0 pulldown + recovery button — only used until app bootloader is on the chip)
-- USB-C (+alt power path)
+- USB-C 
+- Power MUX
+    - [TPS2121](https://jlcpcb.com/partdetail/TexasInstruments-TPS2121RUXR/C485916)
 - Board-to-Board connectors
     - [Plug - Underside of this board](https://jlcpcb.com/partdetail/HRS_Hirose-DF9_25P_1V_32/C2692087)
     - [Socket - Topside of carrier boards](https://jlcpcb.com/partdetail/HRS_Hirose-DF9_25S_1V_32/C3649128)
