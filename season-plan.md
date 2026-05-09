@@ -19,6 +19,28 @@
     - PCB manufacturing
 
 ## High Voltage
+### Module Assembly
+- **Fuses:** Figure out a new fuse situation. We will have to do a lot of testing on what material to use (copper) and then endurance testing to see if they will become undone under different forces. 
+    - In order to test fuses we also need to fix our fuse rig.
+- **Thermistors:** Done — they just need to be glued to each module.
+- **Spotwelding:** Once we find new fuses, spotweld them to busbars, then spotweld the segment to the cells.
+- **Busbars:**
+    - Create new thin busbars?
+    - We have the materials for thick busbars — just need to bend them and put them into the modules.
+- **Thermal bonding:** Bond the thermistors to the thin busbars once they are spotwelded on.
+- **BMS testing:** Once the modules are complete, test that we can read temperature data from the Orion BMS 2. Readings were already obtained with code on the BMS expansion boards — we just need to confirm they are accurate for each module.
+
+### Finish the Mid-Box
+- **Fix two errors on the TSSI and Precharge boards:**
+    - TSSI components need to be galvanically isolated (the connector going from the board to the TSSI lights).
+    - Precharge has a logic error that needs to be resolved.
+- **TSSI Lights:** Make TSSI lights that actually work.
+- **Wiring & documentation:** Finish wiring everything up, then create a schematic of the entire mid-box wiring for documentation purposes.
+
+### Finish Top Cover / Rest of Box
+- **Nomex insulation:** Already cut — just need to epoxy it to the walls of the accumulator housing.
+- **Top cover insulation:** Either get more insulation paper for the top cover or use polycarbonate (the top cover also needs to be insulated).
+- **Top cover components:** A few more things need to be added (HVD, TSMP, etc.). 
 
 ## Low Voltage
 
