@@ -17,6 +17,7 @@
 - Sponsors
     - Connectors / harnesses
     - PCB manufacturing
+- Read *entire* relevant sections of datasheets
 
 ## High Voltage
 ### Module Assembly
