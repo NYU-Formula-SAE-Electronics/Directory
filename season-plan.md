@@ -76,7 +76,7 @@ FSAE/
     - First-flash + recovery: USB and SWD
     - [OpenBLT](https://www.feaser.com/openblt/) as starting point, custom Python flasher with `python-can`
 
-### Project 1: STM32 Core Board
+### Project 1: STM32 Core Board (Veikko, Altan)
 - [STM32G474RET6](https://jlcpcb.com/partdetail/STMicroelectronics-STM32G474RET6/C521608)
     - 170MHz, 512KB flash, 128kB RAM, ARM Cortex-M4F, all peripherals we could possibly need
 - CAN Transceivers
@@ -103,7 +103,7 @@ FSAE/
 ### Project 2: Development / Testing Board
 - All the peripherals we have in screw or header terminals
 
-### Project 3: Central Telemetry Unit
+### Project 3: Central Telemetry Unit (Kenneth & Porter)
 - Add headers and test modules on breadboard
 - PCB
     - STM Core
@@ -118,7 +118,7 @@ FSAE/
         - Connectors for suspension travel sensors (4x3 pins) and Steering angle (6 pins) (probably won't have the sensors in the car until 27-28 season unless there's extra time and money)
 - Enclosure
 
-### Project 4: PCU Gen 2
+### Project 4: PCU Gen 2 (Stacy)
 - STM Core
 - Split connector
     - Brake (6 pin)
@@ -133,7 +133,7 @@ FSAE/
 - Sensor filter circuit development, see [PCU Gen 2](./pcu-gen-2.md)
 - Enclosure
 
-### Project 5: Dash
+### Project 5: Dash (Sasha & Adriella)
 - STM Core
 - Display
     - https://newhavendisplay.com/7-0-inch-ips-eve-tft-lcd-module-without-touchscreen/
@@ -150,7 +150,7 @@ FSAE/
     - Talk to Mina Shafik and Ray about placement, mounting, allocated space
     - Add LV system control switches, etc. to enclosure front plate
 
-### Project 5.1: Steering Wheel (Dash peripheral, no MCU)
+### Project 5.1: Steering Wheel (Dash peripheral, no MCU) (Sasha)
 - Radio Button?
 - Display navigation buttons
 - Regen dial
