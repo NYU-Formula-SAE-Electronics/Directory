@@ -118,7 +118,7 @@ FSAE/
         - Connectors for suspension travel sensors (4x3 pins) and Steering angle (6 pins) (probably won't have the sensors in the car until 27-28 season unless there's extra time and money)
 - Enclosure
 
-### Project 4: PCU Gen 2 (Stacy)
+### Project 4: PCU Gen 2 (Stacy & Annie) 
 - STM Core
 - Split connector
     - Brake (6 pin)
