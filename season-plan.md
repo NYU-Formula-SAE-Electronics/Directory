@@ -20,6 +20,9 @@
 - Read *entire* relevant sections of datasheets
 
 ## High Voltage
+- IMD: Bender iso165C-1
+- BMS: Orion 
+
 ### Module Assembly
 - **Fuses:** Figure out a new fuse situation. We will have to do a lot of testing on what material to use (copper) and then endurance testing to see if they will become undone under different forces. 
     - In order to test fuses we also need to fix our fuse rig.
@@ -50,8 +53,8 @@
 <img src="LV_Architecture_Diagram.png" alt="LV Architecture Diagram" width="700" />
 
 #### CAN Buses
-- **CAN 1:** PCU — Cascadia — BMS — IMD
-- **CAN 2:** PCU — Dash — CTU
+- **CAN 1:** PCU — Cascadia
+- **CAN 2:** PCU — Dash — CTU - IMD - BMS
 
 ### Improved practices
 - Test points
@@ -121,12 +124,15 @@ FSAE/
 ### Project 4: PCU Gen 2 (Stacy & Annie) 
 - STM Core
 - Split connector
-    - Brake (6 pin)
-    - Accelerator (6 pin)
-    - Wheel Speed Sensors (4x3 or maybe 2x6)
-    - Power (2), Regen (2), RTDS (2), RTDB (2) = 8
-    - CANs (4), Brake Pressure Sensors (4)
-    - Extra Signals (4)
+    - Brake (6 pin), Accelerator (6 pin) = 12 pins
+    - Brake Pressure Sensors (2x4) = 8 pins
+    - Wheel Speed Sensors (4 sensors x 3 pins) = 12 pins
+    - Power (2), Regen (2), RTDS (2), RTDB (2) = 8 pins
+    - CANs (4), Extra Signals (4) = 8 pins
+    - 12 PIN Connector
+        - [MX120G Series](https://www.digikey.com/en/products/detail/molex/0367831201/3661543)
+    - 8 PIN Connector
+        - [MX150 Series](https://www.molex.com/en-us/products/part-detail/348300804)
 - LEDs actually this time
 - Louder RTDS
 - Find Brake pressure sensor
@@ -141,8 +147,9 @@ FSAE/
 - Connectors
     - Display (20 pin latching box header)
     - Power (2)
-    - CAN (2 in, 2 out?)
-    - Steering Wheel Board (10)
+    - CAN (2)
+    - Steering Wheel Board (12)
+        - Same as PCU's 12 Pin Connector
     - CAN diag port (CAN2: CAN_H, CAN_L, GND, +12V) — panel mount on enclosure for in-place firmware flashing of PCU / Dash / CTU. 
 - On-board buttons
 - Radio connector? leave full implementation to next year
