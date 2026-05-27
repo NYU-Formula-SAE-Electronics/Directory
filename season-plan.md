@@ -103,7 +103,7 @@ FSAE/
 - Footprint to use in next boards
 - Standoffs
 
-### Project 2: Development / Testing Board
+### Project 2: Development / Testing Board (Nathan)
 - All the peripherals we have in screw or header terminals
 
 ### Project 3: Central Telemetry Unit (Kenneth & Porter)
