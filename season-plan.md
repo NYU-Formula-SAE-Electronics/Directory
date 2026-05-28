@@ -143,7 +143,6 @@ FSAE/
 - STM Core
 - Display
     - https://newhavendisplay.com/7-0-inch-ips-eve-tft-lcd-module-without-touchscreen/
-    - Get them to sponsor with sample(s)
 - Connectors
     - Display (20 pin latching box header)
     - Power (2)
