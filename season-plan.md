@@ -113,9 +113,20 @@ FSAE/
     - SMD modules (same modules/ICs as in current design)
         - Except for GPS since no modules with IPEX connector easily available
             - Use this one we bought: [Adafruit Ultimate GPS Breakout](https://www.adafruit.com/product/5440)
+                - Pinout to MCU:
+                    - Fix ->
+                    - PPS ->
+                    - TX ->
+                    - RX <- (9600 baud)
             - [Reference Image for making footprint](https://github.com/NYU-Formula-SAE-Electronics/CTU-PCB/blob/main/Ref%20Images/gps-module.png)
         - Lora: [RAK3172-9-SM-I](https://jlcpcb.com/partdetail/RAKwireless-RAK3172_9_SMI/C19723905)
+            - Pinout to MCU:
+                - UART TX ->
+                - UART RX <-
+                - RST <-
         - IMU: [BMI088](https://jlcpcb.com/partdetail/BoschSensortec-BMI088/C194919)
+            - Pinout to MCU:
+                - 
     - Connector
         - Power (2), CAN (2) = 4 pin
         - Connectors for suspension travel sensors (4x3 pins) and Steering angle (6 pins) (probably won't have the sensors in the car until 27-28 season unless there's extra time and money)
@@ -125,6 +136,7 @@ FSAE/
 - STM Core
 - Split connector
     - Brake (6 pin), Accelerator (6 pin) = 12 pins
+        - 2x Analog, 2x GND, 2x 5V in each
     - Brake Pressure Sensors (2x4) = 8 pins
     - Wheel Speed Sensors (4 sensors x 3 pins) = 12 pins
     - Power (2), Regen (2), RTDS (2), RTDB (2) = 8 pins
@@ -145,11 +157,29 @@ FSAE/
     - https://newhavendisplay.com/7-0-inch-ips-eve-tft-lcd-module-without-touchscreen/
 - Connectors
     - Display (20 pin latching box header)
+        1 VDD Power Supply Input Voltage for TFT and FT81x (3.3V)
+        2 GND Power Supply Ground
+        3 SCK MCU SPI Clock (Input)
+        4 MISO/IO1 MCU SPI MISO (Output) / Quad-SPI mode: SPI data line 1
+        5 MOSI/IO0 MCU SPI MOSI (Input) / Quad-SPI mode: SPI data line 0
+        6 /CS MCU SPI Chip Select (Input), Active LOW
+        7 /INT MCU Interrupt to host (Output), Active LOW
+        8 /PD MCU Power Down control (Input), Active LOW
+        9 AUDIO_L Filter/Amplifier Audio PWM out (Output)
+        10 N.C. - No Connect
+        11 GPIO0/IO2 MCU General Purpose IO0 / SPI Quad mode: SPI data line 2
+        12 GPIO1/IO3 MCU General Purpose IO1 / SPI Quad mode: SPI data line 3
+        13 GPIO2 MCU General Purpose IO2
+        14 GPIO3 MCU General Purpose IO3
+        15 - 16 N.C. - No Connect
+        17 - 18 VBL Power Supply Input Voltage for LED Backlight Driver (3.3V/5V)
+        19 - 20 GND Power Supply Ground
     - Power (2)
     - CAN (2)
     - Steering Wheel Board (12)
         - Same as PCU's 12 Pin Connector
-    - CAN diag port (CAN2: CAN_H, CAN_L, GND, +12V) — panel mount on enclosure for in-place firmware flashing of PCU / Dash / CTU. 
+    - CAN diag port (ran over USB to STM, mount pointing downward)
+        - https://jlcpcb.com/partdetail/HOAUC-HYCW403_USBC16785B/C5338271 
 - On-board buttons
 - Radio connector? leave full implementation to next year
 - CAD
