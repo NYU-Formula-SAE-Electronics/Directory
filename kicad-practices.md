@@ -12,22 +12,27 @@ FSAE/
 └── ...
 ```
 ### Getting Started with a Project
+
+You need **git** installed to clone repos. **GitHub CLI** (`gh`) is optional but useful later. On Mac, if missing:
+- Homebrew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+- Then: `brew install git` and `brew install gh`
+- First time with `gh`: `gh auth login`
+
 1. Make a folder called FSAE somewhere on your computer
-2. Open a terminal and navigate to that folder using the cd command
-- For example, if your FSAE is on your desktop you can run `cd Desktop/FSAE`
-3. 
-- run: `git clone https://github.com/NYU-Formula-SAE-Electronics/fsae-kicad-lib`
-- run: `git clone https://github.com/NYU-Formula-SAE-Electronics/Carrier-Template-PCB`
-4. Open KiCad and the project you just cloned.
-5. File > Save As and save to a new folder in the FSAE folder named according to the project you're working on (only the folder should have the -PCB suffix, not the project file):
-    - CTU-PCB
-    - PCU-2.0-PCB
-    - Dash-PCB
-5. Open the schematic file
-6. If you're on Mac, click "Preferences" in the menu near the top of the window.
-7. Click "Configure Paths"
-8. Edit or create a path with name FSAE_LIB, when clicking the Path field a folder icon should appear on the right.
-9. Click the folder icon and navigate to the fsae-kicad-lib folder in the finder window
+2. Open a terminal and navigate to that folder using `cd`
+    - For example, if your FSAE is on your desktop: `cd Desktop/FSAE`
+3. Clone the shared library, **your project repo**, and the carrier template (template is only the KiCad starting point; your board lives in the project repo):
+    - `git clone https://github.com/NYU-Formula-SAE-Electronics/fsae-kicad-lib`
+    - Clone the relevant project repo:
+        - `git clone https://github.com/NYU-Formula-SAE-Electronics/CTU-PCB`
+        - `git clone https://github.com/NYU-Formula-SAE-Electronics/PCU-2.0-PCB`
+        - `git clone https://github.com/NYU-Formula-SAE-Electronics/Dash-PCB`
+4. Open KiCad and the project at hand.
+6. Open the schematic file
+7. If you're on Mac, click **Preferences** in the menu near the top of the window.
+8. Click **Configure Paths**
+9. Edit or create a path named `FSAE_LIB`. When clicking the Path field, a folder icon appears on the right — click it and select your local `fsae-kicad-lib` folder.
+10. Open the pcb file to see that it's working properly, also go to View > 3D Viewer to check that the 3D model loads correctly. (You should see the three connectors on their footprints)
 
 ### Sourcing Components
 - In the interest of time, this season we'll try to get everything pre-assembled to maximum extent. Knowing SMD assembly by hand is a good skill to have but takes a huge amount of time and is prone to errors. 
