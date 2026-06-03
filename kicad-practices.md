@@ -11,6 +11,24 @@ FSAE/
 ├── PCU-PCB/
 └── ...
 ```
+### Getting Started with a Project
+1. Make a folder called FSAE somewhere on your computer
+2. Open a terminal and navigate to that folder using the cd command
+- For example, if your FSAE is on your desktop you can run `cd Desktop/FSAE`
+3. 
+- run: `git clone https://github.com/NYU-Formula-SAE-Electronics/fsae-kicad-lib`
+- run: `git clone https://github.com/NYU-Formula-SAE-Electronics/Carrier-Template-PCB`
+4. Open KiCad and the project you just cloned.
+5. File > Save As and save to a new folder in the FSAE folder named according to the project you're working on (only the folder should have the -PCB suffix, not the project file):
+    - CTU-PCB
+    - PCU-2.0-PCB
+    - Dash-PCB
+5. Open the schematic file
+6. If you're on Mac, click "Preferences" in the menu near the top of the window.
+7. Click "Configure Paths"
+8. Edit or create a path with name FSAE_LIB, when clicking the Path field a folder icon should appear on the right.
+9. Click the folder icon and navigate to the fsae-kicad-lib folder in the finder window
+
 ### Sourcing Components
 - In the interest of time, this season we'll try to get everything pre-assembled to maximum extent. Knowing SMD assembly by hand is a good skill to have but takes a huge amount of time and is prone to errors. 
 - Component sourcing from Digikey and Mouser is slow and the components are not always available at JLC and PCBWay (our primary manufacturing companies). They have their own inventories and are connected to LCSC (Chinese version of Digikey)
@@ -18,7 +36,7 @@ FSAE/
 1. Make sure the latest commit of our library is on your machine before adding new parts
     - First time use:
     - `cd FSAE`
-    - `git clone fsae-kicad-lib`
+    - `git clone https://github.com/NYU-Formula-SAE-Electronics/fsae-kicad-lib`
     - Otherwise:
     - `cd FSAE/fsae-kicad-lib`
     - `git pull origin main`
@@ -88,6 +106,10 @@ If we'll have a situation with a lot of people working on projects at the same t
     - Include the text NYU FSAE and the logo on every board
     - Board name and generation
     - Check that there are no overlapping silkscreens with one another or with any pads
+- Fabrication Outputs
+    - For JLC, the component placement CSV file's first line needs to be replaced with:
+        - Designator,Val,Package,MidX,MidY,Rotation,Layer
+
 
 ## Design Reviews
 - Make sure your design follows the practices laid out above.
