@@ -27,14 +27,19 @@ You need **git** installed to clone repos. **GitHub CLI** (`gh`) is optional but
         - `git clone https://github.com/NYU-Formula-SAE-Electronics/CTU-PCB`
         - `git clone https://github.com/NYU-Formula-SAE-Electronics/PCU-2.0-PCB`
         - `git clone https://github.com/NYU-Formula-SAE-Electronics/Dash-PCB`
+        - `git clone https://github.com/NYU-Formula-SAE-Electronics/Dev-Test-PCB`
 4. Open KiCad and the project at hand.
 6. Open the schematic file
 7. If you're on Mac, click **Preferences** in the menu near the top of the window.
 8. Click **Configure Paths**
 9. Edit or create a path named `FSAE_LIB`. When clicking the Path field, a folder icon appears on the right — click it and select your local `fsae-kicad-lib` folder.
 10. Open the pcb file to see that it's working properly, also go to View > 3D Viewer to check that the 3D model loads correctly. (You should see the three connectors on their footprints)
+11. **Always, always, always** when you're done with a work session commit your changes to Github so that others working on the same project don't repeat the work you already did. 
+    - `git add .`
+    - `git commit -m "some descriptive message about what you did"`
+    - `git push origin main`
 
-### Sourcing Components
+### Sourcing Components & using fsae-kicad-lib
 - In the interest of time, this season we'll try to get everything pre-assembled to maximum extent. Knowing SMD assembly by hand is a good skill to have but takes a huge amount of time and is prone to errors. 
 - Component sourcing from Digikey and Mouser is slow and the components are not always available at JLC and PCBWay (our primary manufacturing companies). They have their own inventories and are connected to LCSC (Chinese version of Digikey)
 
@@ -45,6 +50,8 @@ You need **git** installed to clone repos. **GitHub CLI** (`gh`) is optional but
     - Otherwise:
     - `cd FSAE/fsae-kicad-lib`
     - `git pull origin main`
+        - If Git complains about uncommitted changes: run Step 4 (`git add .` and `git commit -m "some descriptive message"`), then `git pull origin main` again.
+        - If you already committed locally and `main` was updated on GitHub by someone else: `git fetch && git rebase origin/main`, then `git push origin main`.
 2. Source components as much as possible from [JLCPCB.com/parts](https://jlcpcb.com/parts)
     - Choose well-stocked components (ideally 100+ in stock), sort by decreasing stock count
     - Make sure when you click "PCB Footprint or Symbol" there is a symbol and footprint available
