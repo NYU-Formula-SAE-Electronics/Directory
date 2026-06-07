@@ -3,7 +3,7 @@
 <img src="LV_Architecture_Diagram.png" alt="LV Architecture Diagram" width="700" />
 
 
-### Project 1: STM32 Core Board (Veikko, Altan)
+### Project 1: STM32 Core Board aka Hydra
 - [STM32G474RET6](https://jlcpcb.com/partdetail/STMicroelectronics-STM32G474RET6/C521608)
     - 170MHz, 512KB flash, 128kB RAM, ARM Cortex-M4F, all peripherals we could possibly need
 - CAN Transceivers
@@ -27,8 +27,8 @@
 - Footprint to use in next boards
 - Standoffs
 
-### Project 2: Development / Testing Board (Nathan)
-- All the peripherals we have in screw or header terminals
+### Project 2: Development / Testing Board (Nathan & Altan)
+- See [Dev-Test-PCB](dev-test-pcb.md)
 
 ### Project 3: Central Telemetry Unit (Kenneth & Porter)
 - Add headers and test modules on breadboard
@@ -56,22 +56,25 @@
                 - CSB1 <-
                 - CSB2 <-
     - Connector
-        - Power (2), CAN (2) = 4 pin
-        - Connectors for suspension travel sensors (4x3 pins) and Steering angle (6 pins) (probably won't have the sensors in the car until 27-28 season unless there's extra time and money)
-            - Total 5x ADC channels on MCU
+        - Power (2), CAN (2) = 4 pin (Using the 8 pin)
+        - Connectors for suspension travel sensors (4x3 pins) and Steering angle (3 pins) (probably won't have the sensors in the car until 27-28 season unless there's extra time and money)
+            - 2 pins for 5V and GND to the front wheel speed
+            - 2 pins for 5V and GND to the steering angle
+            - 3 data pins to the front
+            - 2 pins for 5V and GND to the back
+            - 2 data pins to the back
+            = 11 (Total 5x ADC channels on MCU)
 - Enclosure
 
 ### Project 4: PCU Gen 2 (Stacy & Annie) 
 - STM Core
 - Split connector
-    - Brake (6 pin), Accelerator (6 pin) = 12 pins
-        - 2x Analog, 2x GND, 2x 5V in each
-        - TO STM total: 4x analog through voltage dividers
-    - Brake Pressure Sensors (2x3) = 6 pins
-        - 1x Analog, 1x GND, 1x 5V in each
-        - TO STM total: 2x analog through voltage dividers
+    - Pedal box (6 pin): Brake + Accelerator + Brake Pressure Sensors
+        - 4x Analog (2x pedal position, 2x brake pressure), 1x GND (shared), 1x 5V (shared)
+        - Split near pedal box to all 4 sensors
+        - TO STM total: 6x analog through voltage dividers
     - Wheel Speed Sensors (4 sensors x 3 pins) = 12 pins
-        - 
+        - Front: 
     - Power (2), Regen (2), RTDS (2), RTDB (2) = 8 pins
         - To STM total: 3x digital output
     - CANs (4), Extra Signals (4) = 8 pins
