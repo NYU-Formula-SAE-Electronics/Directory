@@ -3,7 +3,7 @@
 <img src="LV_Architecture_Diagram.png" alt="LV Architecture Diagram" width="700" />
 
 
-### Project 1: STM32 Core Board aka Hydra
+### Project 1: STM32 Core (Hydra)
 - [STM32G474RET6](https://jlcpcb.com/partdetail/STMicroelectronics-STM32G474RET6/C521608)
     - 170MHz, 512KB flash, 128kB RAM, ARM Cortex-M4F, all peripherals we could possibly need
 - CAN Transceivers
@@ -87,7 +87,7 @@
 ### Project 5: Dash (Sasha & Adriella)
 - STM Core
 - Display
-    - https://newhavendisplay.com/7-0-inch-ips-eve-tft-lcd-module-without-touchscreen/
+    - https://newhavendisplay.com/content/specs/NHD-7.0-800480FT-CSXP.pdf
 - Connectors
     - Display (20 pin latching box header)
         1 VDD Power Supply Input Voltage for TFT and FT81x (3.3V)
@@ -107,28 +107,22 @@
         15 - 16 N.C. - No Connect
         17 - 18 VBL Power Supply Input Voltage for LED Backlight Driver (3.3V/5V)
         19 - 20 GND Power Supply Ground
-    - Power (2)
-    - CAN (2)
-    - Steering Wheel Board (12)
-        - Same as PCU's 12 Pin Connector
-    - CAN diag port
-        - https://jlcpcb.com/partdetail/HOAUC-HYCW403_USBC16785B/C5338271 
-        - USB to CAN bridge, connect output to CAN2 bus
+    - Power (2) + CAN2 (2)
+    - Steering Wheel Board: Power + CAN3 (4)
 - On-board buttons
     - Display controls
         - UP, DOWN, LEFT, RIGHT
         - BACK, ENTER
     - 6 Digital input to STM
-- On-board LEDs
+- LEDs
     - IMD
     - BMS
-    - 2 Digital Output from STM
+    - 2 Digital Output from STM (possibly through mosfets)
 - Radio connector? leave full implementation to next year
 - CAD
     - Talk to Mina Shafik and Ray about placement, mounting, allocated space
-    - Add LV system control switches, etc. to enclosure front plate
 
-### Project 5.1: Steering Wheel (Dash peripheral, no MCU) (Sasha)
+### Project 5.1: Steering Wheel (Sasha)
 - Radio Button?
 - Display navigation buttons
     - UP, DOWN, LEFT, RIGHT
@@ -139,9 +133,10 @@
     - 1 Analog input to STM
 - Find Waterproof Buttons
     - [One option with multiple colors](https://www.tinysineaudio.com/products/waterproof-momentary-push-button-panel-mount-12mm?variant=51156643414326)
-- 12 Pin Connector output ovet telephone cord to Dash
+- 4 Pin Connector output ovet telephone cord to Dash
+    - [One cable option](https://www.aliexpress.us/item/3256808292859358.html?spm=a2g0o.productlist.main.7.142d5TRz5TRz8J)
 - Quick Release mechanism same as last seaason
-- Body CAD (talk to Mina Shafik)
+- Body CAD (Mina, Ray, Yazaan)
 
 ### (Project 6: CAN Watchdog)
 - Confirm with judges whether needed
@@ -150,11 +145,11 @@
 - Watchdog IC
 
 ### Flashing over CAN
-- Waterproof USB-C port on STM-Core
-- STM Core mounted close to bottom edge of Dash (hole in dash enclosure for connecting to the port)
-- USB-to-CAN bridge on the Dash STM-Core
-    - Laptop plugs into the Dash STM-Core's USB-C port; that board's STM32 acts as the bridge between the host (USB) and the shared CAN bus
-    - Bridge firmware forwards flasher traffic from USB ↔ CAN, so no external USB-to-CAN dongle is needed
+- Waterproof USB-C port on Hydra
+- Hydra mounted close to bottom edge of Dash (hole in dash enclosure for connecting to the port)
+- USB-to-CAN bridge on the Dash MCU
+    - Laptop plugs into the Dash STM's USB controller, write the firmware for it to act as the bridge between the host (USB) and the shared CAN bus
+    - Bridge firmware forwards flasher traffic from USB ↔ CAN
     - The bridge board can also flash itself: host commands it over USB to drop into its own bootloader
 - Custom application bootloader on every STM board
     - `BL_ENTER` CAN msg → writes magic value to RTC backup register → `NVIC_SystemReset()` → bootloader sees magic, stays in update mode until flash success or `BL_EXIT` CAN msg.
