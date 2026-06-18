@@ -17,7 +17,7 @@
 
 ### Components
 - **Dash PCB & Display Step:** https://github.com/NYU-Formula-SAE-Electronics/Dash-PCB/blob/main/dash-pcb.step
-  - It will give a 404 error if you're not part of the Github Org, make an account and email username to Sasha or Veikko for inviting you.
+  - It will give a 404 error if you're in the Github Org, make an account and dm username to Sasha or Veikko for inviting you.
   - As of June 17th the core pcb's 3d model needs usbc and sd adapter position corrected in cad
 - **Buttons** left, right, up, down, okay, back (FLM8-BJ-1-XX000-A10M2)
   - Datasheet: https://www.indicatorlight.com/wp-content/uploads/2021/11/8mm-waterproof-IP65-momentary-mini-push-button-switch.pdf
