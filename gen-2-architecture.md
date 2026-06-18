@@ -138,6 +138,8 @@
 - Quick Release mechanism same as last seaason
 - Body CAD (Mina, Ray, Yazaan)
 
+
+
 ### (Project 6: CAN Watchdog)
 - Confirm with judges whether needed
 - Rules say: "If CAN communication are used for safety functions, a relay controlled by an independent CAN watchdog device that opens if relevant CAN messages are not received. This relay is not required to be latching."
