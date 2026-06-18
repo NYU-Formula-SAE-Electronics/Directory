@@ -29,9 +29,13 @@
 ### Design
 - Needs to flow well with chassis and body panels
 - Minimal height as display is already pretty big, wall thickness can be slightly reduced there to minimize height
-<img src="dash-wireframe.png" alt="Wireframe" width="400" />
-- Thicker section at the center back to accomodate for connectors 
-<img src="back.png" alt="Back" width="400" />
+
+  <img src="dash-wireframe.png" alt="Wireframe" width="400" />
+
+- Thicker section at the center back to accomodate for connectors
+
+  <img src="back.png" alt="Back" width="400" />
+
 - Otherwise minimal thickness except for when interfacing with the chassis
 - 2 mm wall thickness with optimized ribs 
 - 3 mm clearance from chassis tubes on average to allow for vibration insulation (also how close is actual chassis to cad?)
@@ -40,7 +44,9 @@
 - IMD & AMS leds, BRB, RTDB on the left side of display 
   - Open to different arrangements on these, LEDs can conceivably be on the right side too.
 - Opening on under side for USB-C port (preferably with guiding funnel)
-<img src="usb.png" alt="usb" width="400" />
+
+  <img src="usb.png" alt="usb" width="400" />
+
 
 
 
@@ -72,7 +78,9 @@ PCB repo and 3d model are ~1-2 months out. Components are selected so CAD is mos
 ### Leds
 - Surface mounted arrays on pcb for both logo and arcs around potentiometers to show position
 - Transclucent diffuser in front (resin printed, glued from inside)
-<img src="led-knob-array.png" alt="LED knob array" width="400" />
+
+  <img src="led-knob-array.png" alt="LED knob array" width="400" />
+
 
 ### Construction preliminary (in-order front to back)
 1. Knob covers & buttons
