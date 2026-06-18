@@ -50,13 +50,14 @@
 
 ### Gen 2 System Architecture
 
-<img src="LV_Architecture_Diagram.png" alt="LV Architecture Diagram" width="700" />
+<img src="Low-Voltage/LV_Architecture_Diagram.png" alt="LV Architecture Diagram" width="700" />
 
 ### [Details of Projects](gen-2-architecture.md)
 
 #### CAN Buses
 - **CAN 1:** PCU — Cascadia
 - **CAN 2:** PCU — Dash — CTU - IMD - BMS
+- **CAN 3** Dash – Steering Wheel
 
 ### Improved practices
 - Test points

@@ -11,9 +11,9 @@
     - Termination jumper / switch
 - Oscillator
 - 3V3 (and 5V) Power + Protection
-    - 12V to 5V Conversion and 5V to 3V3 conversion
-        - 2 x [LMR33630](https://jlcpcb.com/partdetail/TexasInstruments-LMR33630AQRNXRQ1/C1850374)
-            - just needs different passive components for different output voltages: [Datasheet](https://www.ti.com/lit/ds/symlink/lmr33630-q1.pdf?ts=1778219527300&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FLMR33630-Q1%252Fpart-details%252FLMR33630AQRNXRQ1)
+    - 12V to 5V Conversion: [LMR33620BQRNXTQ1](https://jlcpcb.com/partdetail/TexasInstruments-LMR33620BQRNXTQ1/C2071065) (2A buck)
+        - [Datasheet](https://www.ti.com/lit/ds/symlink/lmr33620-q1.pdf)
+    - 5V to 3V3 Conversion: [TLV76733QWDRBRQ1](https://jlcpcb.com/partdetail/TexasInstruments-TLV76733QWDRBRQ1/C5220143) (LDO)
 - SWD header (Tag-Connect TC2030 footprint — pads only, for first-flash + bricked-bootloader recovery without opening enclosures)
 - SD-Adapter
 - Status LEDs
@@ -78,7 +78,6 @@
     - Power (2), Regen (2), RTDS (2), RTDB (2) = 8 pins
         - To STM total: 3x digital output
     - CANs (4), Extra Signals (4) = 8 pins
-- LEDs actually this time
 - Louder RTDS
 - Find Brake pressure sensor
 - Sensor filter circuit development, see [PCU Gen 2](./pcu-gen-2.md)
@@ -123,22 +122,27 @@
     - Talk to Mina Shafik and Ray about placement, mounting, allocated space
 
 ### Project 5.1: Steering Wheel (Sasha)
+- No STM Core board — re-use the same MCU + power architecture components from Project 1 directly on this board:
+    - MCU: STM32G474RET6
+        - SWD Header, Buttons, etc. No need for SD-card
+    - 12V to 5V Conversion: LMR33630AQRNXRQ1 (3A buck)
+    - 5V to 3V3 Conversion: TLV76733QWDRBRQ1 (LDO)
+    - 1x CAN transceiver: TJA1051TK/3/1J
+    - USB-C: HYCW403-USBC16-785B (with USBLC6-2SC6 ESD protection)
 - Radio Button?
 - Display navigation buttons
     - UP, DOWN, LEFT, RIGHT
     - BACK, ENTER
-- Regen knob
-    - 1 Analog input to STM
-- Power knob
-    - 1 Analog input to STM
+- Regen knob: RK09L1140-F15
+- Power knob: RK09L1140-F15 (already in lib)
+- LEDs: TZ-H1010-RGB/A-BU08UF-TA1305NA/W109 (already in lib)
+- Ambient Light Sensor: [VEML7700] (https://jlcpcb.com/partdetail/VishayIntertech-VEML7700TR/C504893)
 - Find Waterproof Buttons
     - [One option with multiple colors](https://www.tinysineaudio.com/products/waterproof-momentary-push-button-panel-mount-12mm?variant=51156643414326)
 - 4 Pin Connector output ovet telephone cord to Dash
     - [One cable option](https://www.aliexpress.us/item/3256808292859358.html?spm=a2g0o.productlist.main.7.142d5TRz5TRz8J)
 - Quick Release mechanism same as last seaason
 - Body CAD (Mina, Ray, Yazaan)
-
-
 
 ### (Project 6: CAN Watchdog)
 - Confirm with judges whether needed
