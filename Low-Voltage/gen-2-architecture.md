@@ -35,19 +35,6 @@
 - PCB
     - STM Core
     - SMD modules (same modules/ICs as in current design)
-        - Except for GPS since no modules with IPEX connector easily available
-            - Use this one we bought: [Adafruit Ultimate GPS Breakout](https://www.adafruit.com/product/5440)
-                - Pinout to MCU:
-                    - Fix -> 
-                    - PPS ->
-                    - TX -> 
-                    - RX <- (9600 baud)
-            - [Reference Image for making footprint](https://github.com/NYU-Formula-SAE-Electronics/CTU-PCB/blob/main/Ref%20Images/gps-module.png)
-        - Lora: [RAK3172-9-SM-I](https://jlcpcb.com/partdetail/RAKwireless-RAK3172_9_SMI/C19723905)
-            - Pinout to MCU:
-                - UART TX ->
-                - UART RX <-
-                - RST <-
         - IMU: [BMI088](https://jlcpcb.com/partdetail/BoschSensortec-BMI088/C194919)
             - Pinout to MCU:
                 - SDI (MOSI) <-
@@ -57,7 +44,8 @@
                 - CSB2 <-
     - Connector
         - Power (2), CAN (2) = 4 pin (Using the 8 pin)
-        - Connectors for suspension travel sensors (4x3 pins) and Steering angle (3 pins) (probably won't have the sensors in the car until 27-28 season unless there's extra time and money)
+        - Connectors for suspension travel sensors (4x3 pins) and Steering angle (3 pins) 
+            - Steering column / angle: [Honeywell RTY180LVDDX](https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/motion-position-sensors/magnetic-position-sensors/common/documents/sps-siot-rty-series-rtp-series-datasheet-32307665-b-en-ciid-154842.pdf) — Hall-effect rotary, 180° (±90°), 5 V supply, 0.5–4.5 V ratiometric output (25 mA during output-to-GND short)
             - 2 pins for 5V and GND to the front wheel speed
             - 2 pins for 5V and GND to the steering angle
             - 3 data pins to the front
@@ -66,24 +54,69 @@
             = 11 (Total 5x ADC channels on MCU)
 - Enclosure
 
-### Project 4: PCU Gen 2 (Stacy & Annie) 
+### Project 4: Comms (Kenneth & Porter)
+- PCB
+    - STM Core
+    - SMD modules (same modules/ICs as in current design)
+        - GPS: [u-blox NEO-M9N-00B](https://jlcpcb.com/partdetail/UBLOX-NEO_M9N00B/C5119087)
+            - Concurrent GPS/GLONASS/Galileo/BeiDou, up to 25 Hz nav update rate (holds 25 Hz even in full 4-constellation concurrent mode)
+            - Set dynamic platform model to Automotive / Airborne <4g (UBX CFG-NAV5) so hard braking/cornering isn't over-smoothed
+            - Pinout to MCU:
+                - TXD -> (NMEA / UBX)
+                - RXD <-
+                - TIMEPULSE (PPS) -> (1PPS for time-syncing CAN logs)
+                - RESET_N <-
+                - EXTINT <- (optional: wake / time-aid)
+            - V_BCKP: coin cell or supercap for hot-start (keeps ephemeris + RTC between power cycles)
+            - Antenna: RF_IN 50 Ω to external antenna via SMA connector (carbon body blocks RF, mount externally). No integrated LNA/SAW on this module (unlike the MAX package) — needs an active (powered) antenna; VCC_RF supplies antenna bias, LNA_EN gates it
+
+        - Lora: [RAK3172-9-SM-NI](https://jlcpcb.com/partdetail/RAKwireless-RAK3172_9_SMI/C19723905)
+            - Pinout to MCU:
+                - UART TX ->
+                - UART RX <-
+                - RST <-
+            - Antenna: 50 Ω to external antenna via SMA connector
+
+        - LTE: [EG912UGLAA-I05-SGNSA](https://jlcpcb.com/partdetail/Quectel-EG912UGLAA_I05SGNSA/C7498995)
+            - LTE Cat 1 (10 Mbps DL / 5 Mbps UL)
+            - Built-in TCP/IP + MQTT/HTTP/TLS over AT commands (no IP stack needed on the MCU)
+            - Pinout to MCU:
+                - UART TX -> (main / AT)
+                - UART RX <-
+                - RTS -> / CTS <- (optional HW flow control, recommended at high baud)
+                - PWRKEY <- (drive low ≥2 s via open-drain / NPN to power on)
+                - RESET_N <- (drive low ≥100 ms to reset)
+                - STATUS -> (power / operating state)
+                - RI -> (optional: URC / wake interrupt)
+            - Power: dedicated 12 V to 3.8 V buck on VBAT (range 3.3–4.3 V, NOT the 3V3 LDO); bulk cap ≥100 µF for TX bursts
+            - Level shift: module I/O is 1.8 V — level-shift UART + control to 3V3, use VDD_EXT (1.8 V) as reference
+            - Antenna: cellular 50 Ω to external antenna via SMA connector; keep clear of GPS antenna + buck to avoid desense
+            - eSIM MFF2 (soldered for vibration; pick eUICC for OTA carrier reprovision); ESD on SIM lines
+            - Carrier: IoT eSIM — 1NCE
+
+### Project 5: VCU Gen 2 (Stacy & Annie) 
 - STM Core
-- Split connector
-    - Pedal box (6 pin): Brake + Accelerator + Brake Pressure Sensors
-        - 4x Analog (2x pedal position, 2x brake pressure), 1x GND (shared), 1x 5V (shared)
-        - Split near pedal box to all 4 sensors
-        - TO STM total: 6x analog through voltage dividers
-    - Wheel Speed Sensors (4 sensors x 3 pins) = 12 pins
-        - Front: 
-    - Power (2), Regen (2), RTDS (2), RTDB (2) = 8 pins
-        - To STM total: 3x digital output
-    - CANs (4), Extra Signals (4) = 8 pins
-- Louder RTDS
+- Connectors:
+    - Brake + Accelerator Position
+        - 4 Analog, 4 5V, 4 GND = 12 pins
+        - Pedal position: [Honeywell RTY090LVDDX](https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/motion-position-sensors/magnetic-position-sensors/common/documents/sps-siot-rty-series-rtp-series-datasheet-32307665-b-en-ciid-154842.pdf) 
+    - Wheel Speed Sensors
+        - Front: Shared GND, Shared 5V, 2 DI = 4 pins
+            - Y-Splice with WAGOs
+        - Back: Shared GND, Shared 5V, 2 DI= 4 pins
+            Y-Splice with WAGOs
+    - Power (2)
+    - Brake pressure sensor, Brake cutoff vale: Shared GND, Shared 5V, 2 DIO = 4 pins
+        Y-Splice with WAGOs
+    - CAN1 = 2 pins
+    - CAN2 = 2 pins
+- RTDS: https://www.mspindy.com/spec-sheets/SC616NDR.pdf
+    - Same enclosure, over 2 pin th solder pads
 - Find Brake pressure sensor
 - Sensor filter circuit development, see [PCU Gen 2](./pcu-gen-2.md)
 - Enclosure
 
-### Project 5: Dash (Sasha & Adriella)
+### Project 6: Dash (Sasha & Adriella)
 - STM Core
 - Display
     - https://newhavendisplay.com/content/specs/NHD-7.0-800480FT-CSXP.pdf
@@ -106,8 +139,8 @@
         15 - 16 N.C. - No Connect
         17 - 18 VBL Power Supply Input Voltage for LED Backlight Driver (3.3V/5V)
         19 - 20 GND Power Supply Ground
-    - Power (2) + CAN2 (2)
-    - Steering Wheel Board: Power + CAN3 (4)
+    - PCU / vehicle bus (4): Power (2) + CAN2 (2) — shared with PCU, CTU, IMD, BMS
+    - Steering wheel (4): Power (2) + CAN3 (2)
 - On-board buttons
     - Display controls
         - UP, DOWN, LEFT, RIGHT
@@ -121,11 +154,11 @@
 - CAD
     - Talk to Mina Shafik and Ray about placement, mounting, allocated space
 
-### Project 5.1: Steering Wheel (Sasha)
+### Project 6.1: Steering Wheel (Sasha)
 - No STM Core board — re-use the same MCU + power architecture components from Project 1 directly on this board:
     - MCU: STM32G474RET6
         - SWD Header, Buttons, etc. No need for SD-card
-    - 12V to 5V Conversion: LMR33630AQRNXRQ1 (3A buck)
+    - 12V to 5V Conversion: LMR33620AQRNXRQ1 (Same as STM Core)
     - 5V to 3V3 Conversion: TLV76733QWDRBRQ1 (LDO)
     - 1x CAN transceiver: TJA1051TK/3/1J
     - USB-C: HYCW403-USBC16-785B (with USBLC6-2SC6 ESD protection)
@@ -133,22 +166,19 @@
 - Display navigation buttons
     - UP, DOWN, LEFT, RIGHT
     - BACK, ENTER
-- Regen knob: RK09L1140-F15
-- Power knob: RK09L1140-F15 (already in lib)
+- Regen knob: SRBV170501
+- Power knob: SRBV170501 (already in lib)
 - LEDs: TZ-H1010-RGB/A-BU08UF-TA1305NA/W109 (already in lib)
 - Ambient Light Sensor: [VEML7700] (https://jlcpcb.com/partdetail/VishayIntertech-VEML7700TR/C504893)
 - Find Waterproof Buttons
     - [One option with multiple colors](https://www.tinysineaudio.com/products/waterproof-momentary-push-button-panel-mount-12mm?variant=51156643414326)
 - 4 Pin Connector output ovet telephone cord to Dash
+    - Option A: Amphenol 4 pin connector
+    - Option B: 
     - [One cable option](https://www.aliexpress.us/item/3256808292859358.html?spm=a2g0o.productlist.main.7.142d5TRz5TRz8J)
 - Quick Release mechanism same as last seaason
+- One option for [Stickers](https://www.cubecontrols.com/product/cube-controls-stickers-2-0/?srsltid=AfmBOooiC100uyHfVWbyw9a8SNO5JCclhUKuuNgaMDKEeAwcZp5XErfA)
 - Body CAD (Mina, Ray, Yazaan)
-
-### (Project 6: CAN Watchdog)
-- Confirm with judges whether needed
-- Rules say: "If CAN communication are used for safety functions, a relay controlled by an independent CAN watchdog device that opens if relevant CAN messages are not received. This relay is not required to be latching."
-- STM Core
-- Watchdog IC
 
 ### Flashing over CAN
 - Waterproof USB-C port on Hydra
