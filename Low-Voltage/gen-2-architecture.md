@@ -31,7 +31,6 @@
 - See [Dev-Test-PCB](dev-test-pcb.md)
 
 ### Project 3: Central Telemetry Unit (Kenneth & Porter)
-- Add headers and test modules on breadboard
 - PCB
     - STM Core
     - SMD modules (same modules/ICs as in current design)
@@ -43,15 +42,16 @@
                 - CSB1 <-
                 - CSB2 <-
     - Connector
-        - Power (2), CAN (2) = 4 pin (Using the 8 pin)
+        - Power (2), CAN (2) = 4 pin
         - Connectors for suspension travel sensors (4x3 pins) and Steering angle (3 pins) 
-            - Steering column / angle: [Honeywell RTY180LVDDX](https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/motion-position-sensors/magnetic-position-sensors/common/documents/sps-siot-rty-series-rtp-series-datasheet-32307665-b-en-ciid-154842.pdf) — Hall-effect rotary, 180° (±90°), 5 V supply, 0.5–4.5 V ratiometric output (25 mA during output-to-GND short)
-            - 2 pins for 5V and GND to the front wheel speed
-            - 2 pins for 5V and GND to the steering angle
-            - 3 data pins to the front
-            - 2 pins for 5V and GND to the back
-            - 2 data pins to the back
-            = 11 (Total 5x ADC channels on MCU)
+            - Steering column / angle: [Honeywell RTY180LVDDX](https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/motion-position-sensors/magnetic-position-sensors/common/documents/sps-siot-rty-series-rtp-series-datasheet-32307665-b-en-ciid-154842.pdf) — Hall-effect rotary, ]180° (±90°), 5 V supply, 0.5–4.5 V ratiometric output (25 mA during output-to-GND short)
+                - 6 pin connector
+                - 10k/15k divider
+            - Suspension travel sensor: [One candidate](https://www.summitracing.com/parts/hth-ht-011203)
+                - 3 pins: 5V, GND, Analog OUT
+                    - 10k/15k resistors
+                - 2 x 6 pin connectors (one for front sensors, one for back)
+
 - Enclosure
 
 ### Project 4: Comms (Kenneth & Porter)
