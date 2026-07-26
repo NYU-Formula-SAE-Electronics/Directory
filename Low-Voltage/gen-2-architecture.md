@@ -99,21 +99,27 @@
 - Connectors:
     - Brake + Accelerator Position
         - 4 Analog, 4 5V, 4 GND = 12 pins
-        - Pedal position: [Honeywell RTY090LVDDX](https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/motion-position-sensors/magnetic-position-sensors/common/documents/sps-siot-rty-series-rtp-series-datasheet-32307665-b-en-ciid-154842.pdf) 
-    - Wheel Speed Sensors
+        - Pedal position: [Honeywell RTY090LVDDX](https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/motion-position-sensors/magnetic-position-sensors/common/documents/sps-siot-rty-series-rtp-series-datasheet-32307665-b-en-ciid-154842.pdf)
+            - 10k/15k resistors, 1uF capacitor to GND (4 Total)
+            - Data into ADC Channel
+    - Wheel Speed Sensors: [One candidate](https://www.littelfuse.com/products/sensors/speed-sensors/hall-effect-sensors/55505/55505-00)
+        - Data line into TIM pins on STM Core
         - Front: Shared GND, Shared 5V, 2 DI = 4 pins
             - Y-Splice with WAGOs
         - Back: Shared GND, Shared 5V, 2 DI= 4 pins
-            Y-Splice with WAGOs
-    - Power (2)
-    - Brake pressure sensor, Brake cutoff vale: Shared GND, Shared 5V, 2 DIO = 4 pins
-        Y-Splice with WAGOs
+            - Y-Splice with WAGOs
+   
+    - Brake pressure sensor, Brake cutoff valve: Shared GND, Shared 5V, 2 DIO = 4 pins
+        - Y-Splice with WAGOs
+        - Mosfet Switch for cutoff valve (similar to Gen 1)
+        - Voltage Divider for [pressure sensor](https://www.haltech.com/product/ht-010908-2000-psi-brake-nitrous-pressure-sensor)
+            - Data line into ADC Channel
+    - Power = 2 pins
     - CAN1 = 2 pins
     - CAN2 = 2 pins
-- RTDS: https://www.mspindy.com/spec-sheets/SC616NDR.pdf
+- RTDS: [](https://www.mspindy.com/spec-sheets/SC616NDR.pdf)
     - Same enclosure, over 2 pin th solder pads
-- Find Brake pressure sensor
-- Sensor filter circuit development, see [PCU Gen 2](./pcu-gen-2.md)
+    - Clone Dash-PCB repo and copy the AMS/IMD driving circuit with TH pads
 - Enclosure
 
 ### Project 6: Dash (Sasha & Adriella)
